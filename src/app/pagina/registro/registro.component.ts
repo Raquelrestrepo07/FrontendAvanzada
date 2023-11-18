@@ -5,7 +5,7 @@ import { RegistroUsuarioDTO } from '../../modelo/registro-usuario-dto';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  styleUrls: ['./registro.component.css']
 })
 
 export class RegistroComponent {
@@ -19,7 +19,7 @@ export class RegistroComponent {
   constructor(){
     this.registroUsuarioDTO = new RegistroUsuarioDTO();
     this.ciudades = [];
-    this.cargarCiudades();
+    //this.cargarCiudades();
     this.eps = [];
     this.cargarEps();
     this.tipoSangre = [];
@@ -38,13 +38,16 @@ export class RegistroComponent {
     return this.registroUsuarioDTO.contrasenia == this.registroUsuarioDTO.confirmaContrasenia;
     }
 
-  private cargarCiudades(){
-    this.ciudades.push("Armenia");
-    this.ciudades.push("Calarcá");
-    this.ciudades.push("Pereira");
-    this.ciudades.push("Manizales");
-    this.ciudades.push("Medellín");
-    }
+    // private cargarCiudades() {
+    //   this.clinicaService.listarCiudades().subscribe({
+    //   next: data => {
+    //   this.ciudades = data.respuesta;
+    //   },
+    //   error: error => {
+    //   console.log(error);
+    //   }
+    //   });
+    // }
 
     private cargarEps(){
       this.eps.push("Sanitas");

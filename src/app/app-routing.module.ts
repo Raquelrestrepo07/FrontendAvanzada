@@ -11,6 +11,7 @@ import { GestionCitasComponent } from './pagina/gestion-citas/gestion-citas.comp
 import { DetalleCitaComponent } from './pagina/detalle-cita/detalle-cita.component';
 import { PerfilPacienteComponent } from './pagina/perfil-paciente/perfil-paciente.component';
 import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/citas-pendiente-medico.component';
+import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-medico.component';
 
 export const routes: Routes = [
   { path: "", component: InicioComponent },
@@ -23,8 +24,9 @@ export const routes: Routes = [
   { path: "gestion-citas", component: GestionCitasComponent },
   { path: "agendar-cita", component: AgendarCitaComponent },
   { path: "detalle-cita/:codigo", component: DetalleCitaComponent },
-  { path: "perfil-paciente/", component: PerfilPacienteComponent },
-  { path: "citas-pendiente-medico/", component: CitasPendienteMedicoComponent },
+  { path: "perfil-paciente", component: PerfilPacienteComponent },
+  { path: "citas-pendiente-medico", component: CitasPendienteMedicoComponent },
+  { path: "citas-hoy-medico", component: CitasHoyMedicoComponent },
   { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

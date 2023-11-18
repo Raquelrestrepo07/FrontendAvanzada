@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PqrsService } from '../../servicios/pqrs.service';
-import { ItemPQRSDTO } from '../../modelo/item-pqrsdto';
+import { HistorialPQRSPacienteDTO } from 'src/app/modelo/historial-pqrs-paciente-dto';
 
 @Component({
   selector: 'app-gestion-pqrs',
   templateUrl: './gestion-pqrs.component.html',
-  styleUrl: './gestion-pqrs.component.css'
+  styleUrls: ['./gestion-pqrs.component.css']
 })
 export class GestionPqrsComponent {
 
-  pqrs: ItemPQRSDTO[];
+  pqrs: HistorialPQRSPacienteDTO[];
 
   constructor( private pqrsService: PqrsService ) {
     this.pqrs = pqrsService.listar();

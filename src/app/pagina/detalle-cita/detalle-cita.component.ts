@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-detalle-cita',
   templateUrl: './detalle-cita.component.html',
-  styleUrl: './detalle-cita.component.css'
+  styleUrls: ['./detalle-cita.component.css']
 })
 export class DetalleCitaComponent {
 

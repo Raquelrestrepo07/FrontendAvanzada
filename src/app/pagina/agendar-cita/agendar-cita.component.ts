@@ -6,13 +6,14 @@ import { AgendarCitaPacienteDTO } from 'src/app/modelo/agendar-cita-paciente-dto
 @Component({
   selector: 'app-agendar-cita',
   templateUrl: './agendar-cita.component.html',
-  styleUrl: './agendar-cita.component.css'
+  styleUrls: ['./agendar-cita.component.css']
 })
 export class AgendarCitaComponent {
 
   agendarCitaPacienteDTO: AgendarCitaPacienteDTO;
   especialidades:string[];
   medicos:string[];
+  
 
 
   constructor(private citaService: CitaService) {
@@ -25,6 +26,7 @@ export class AgendarCitaComponent {
   }
 
   public crearCita(){
+    console.log(this.agendarCitaPacienteDTO);
     this.citaService.crear(this.agendarCitaPacienteDTO);
   }
 

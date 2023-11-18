@@ -1,7 +1,7 @@
 <div class="card">
 
     <div class="card-header ps-5 pt-4 pb-4">
-        <h5 class="mb-0"><i class="fa-solid fa-comments me-3"></i>Gestión de citas</h5>
+        <h5 class="mb-0">Gestión de citas</h5>
     </div>
 
     <div class="card-body p-5">
@@ -19,7 +19,6 @@
                     <th>Fecha Cita</th>
                     <th>Estado</th>
                     <th>Médico</th>
-                    <th>Especialidad</th>
                     <th>Motivo</th>
                 </tr>
            </thead>
@@ -28,9 +27,8 @@
                    <td><p>{{item.codigoCita}}</p></td>
                    <td><p>{{item.fechaCreacion}}</p></td>
                    <td><p>{{item.fechaCita}}</p></td>
-                   <td><span [ngClass]="item.estado == 'Cita En Espera' ? 'text-bg-success' :'text-bg-danger'" class="badge">{{item.estado}}</span></td>
+                   <td><span [ngClass]="item.estado == 'EnEspera' ? 'text-bg-success' :'text-bg-danger'" class="badge">{{item.estado}}</span></td>
                    <td><p>{{item.medico}}</p></td>
-                   <td><p>{{item.especialidad}}</p></td>
                    <td><p>{{item.motivoCita}}</p></td>
                    <td><a routerLink="/detalle-cita/{{item.codigoCita}}" ><i class="fa-solid fa-circle-info me-2"></i>Ver detalle</a></td>
                </tr>

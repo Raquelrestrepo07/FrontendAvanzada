@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './pagina/inicio/inicio.component';
@@ -11,11 +10,13 @@ import { CrearPqrsComponent } from './pagina/crear-pqrs/crear-pqrs.component';
 import { DetallePqrsComponent } from './pagina/detalle-pqrs/detalle-pqrs.component';
 import { GestionPqrsComponent } from './pagina/gestion-pqrs/gestion-pqrs.component';
 import { GestionCitasComponent } from './pagina/gestion-citas/gestion-citas.component';
-
-import { FormsModule } from '@angular/forms';
 import { PerfilPacienteComponent } from './pagina/perfil-paciente/perfil-paciente.component';
 import { DetalleCitaComponent } from './pagina/detalle-cita/detalle-cita.component';
 import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/citas-pendiente-medico.component';
+import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-medico.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -30,12 +31,14 @@ import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/c
     GestionCitasComponent,
     PerfilPacienteComponent,
     DetalleCitaComponent,
-    CitasPendienteMedicoComponent
+    CitasPendienteMedicoComponent,
+    CitasHoyMedicoComponent
     
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

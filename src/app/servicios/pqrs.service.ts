@@ -1,35 +1,35 @@
 import { Injectable } from '@angular/core';
-import { ItemPQRSDTO } from '../modelo/item-pqrsdto';
-import { RegistroPQRSDTO } from '../modelo/registro-pqrsdto';
+import { PQRSPacienteDTO} from '../modelo/pqrs-paciente-dto';
+import { HistorialPQRSPacienteDTO } from '../modelo/historial-pqrs-paciente-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PqrsService {
 
-    pqrs: ItemPQRSDTO[];
+    pqrs: HistorialPQRSPacienteDTO[];
 
     constructor() {
 
       this.pqrs = [];
 
-      this.pqrs.push({ codigo: 1, estado: 'ACTIVO', motivo: 'Solicitud de información', fecha:'2023-10-12' });
-      this.pqrs.push({ codigo: 2, estado: 'ACTIVO', motivo: 'Solicitud de cambio de fecha', fecha: '2023-09-29' });
-      this.pqrs.push({ codigo: 3, estado: 'CERRADO', motivo: 'Solicitud de información', fecha:'2023-11-01' });
-      this.pqrs.push({ codigo: 4, estado: 'ACTIVO', motivo: 'Queja sobre médico', fecha:'2023-09-07' });
+      this.pqrs.push({ numRadicado: 1, estado: 'ACTIVO', citaAsociada: 5, fechaCreacion:'2023-10-12' });
+      this.pqrs.push({ numRadicado: 2, estado: 'ACTIVO', citaAsociada: 4, fechaCreacion: '2023-09-29' });
+      this.pqrs.push({ numRadicado: 3, estado: 'CERRADO', citaAsociada:3, fechaCreacion:'2023-11-01' });
+      this.pqrs.push({ numRadicado: 4, estado: 'ACTIVO', citaAsociada: 2, fechaCreacion:'2023-09-07' });
     }
 
-    public listar(): ItemPQRSDTO[] {
+    public listar(): HistorialPQRSPacienteDTO[] {
         return this.pqrs;
     }
 
-    public obtener(codigo: number): ItemPQRSDTO | undefined{
-        return this.pqrs.find(pqrs => pqrs.codigo == codigo);
+    public obtener(codigo: number): HistorialPQRSPacienteDTO | undefined{
+        return this.pqrs.find(pqrs => pqrs.numRadicado == codigo);
     }
 
-    public crear(pqrs: RegistroPQRSDTO){
+    public crear(pqrs: PQRSPacienteDTO){
         let codigo = this.pqrs.length + 1;
-        this.pqrs.push({ codigo: codigo, estado: 'ACTIVO', motivo: pqrs.motivo, fecha: new Date().toISOString() });
+        this.pqrs.push({ numRadicado: codigo, estado: 'ACTIVO', citaAsociada: codigo, fechaCreacion: new Date().toISOString() });
     }
 
 }

@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistroPQRSDTO } from 'src/app/modelo/registro-pqrsdto';
+import { PQRSPacienteDTO } from 'src/app/modelo/pqrs-paciente-dto';
 import { PqrsService } from 'src/app/servicios/pqrs.service';
 
 @Component({
   selector: 'app-crear-pqrs',
   templateUrl: './crear-pqrs.component.html',
-  styleUrl: './crear-pqrs.component.css'
+  styleUrls: ['./crear-pqrs.component.css']
 })
 export class CrearPqrsComponent {
 
-  registroPQRSDTO: RegistroPQRSDTO;
+  pqrsPacienteDto: PQRSPacienteDTO;
 
 
   constructor(private pqrsService: PqrsService) {
-    this.registroPQRSDTO = new RegistroPQRSDTO();
+    this.pqrsPacienteDto = new PQRSPacienteDTO();
   }
 
   public crearPqrs(){
-    this.pqrsService.crear(this.registroPQRSDTO);
+    this.pqrsService.crear(this.pqrsPacienteDto);
   }
 
   public seleccionar(codigoCita:number){
-    this.registroPQRSDTO.codigoCita = codigoCita;
+    this.pqrsPacienteDto.citaAsociada = codigoCita;
   }
 
 }

@@ -5,7 +5,7 @@ import { RegistroUsuarioDTO } from 'src/app/modelo/registro-usuario-dto';
 @Component({
   selector: 'app-perfil-paciente',
   templateUrl: './perfil-paciente.component.html',
-  styleUrl: './perfil-paciente.component.css'
+  styleUrls: ['./perfil-paciente.component.css']
 })
 export class PerfilPacienteComponent {
 
@@ -14,6 +14,8 @@ export class PerfilPacienteComponent {
   eps:string[];
   tipoSangre:string[];
   archivos!:FileList;
+
+  //editarHabilitado: boolean = false;
 
   constructor(){
     this.registroUsuarioDTO = new RegistroUsuarioDTO();
@@ -24,6 +26,11 @@ export class PerfilPacienteComponent {
     this.tipoSangre = [];
     this.cargarTipoSangre();
     }
+
+  // editarPerfil() {
+  //     // Lógica para manejar la edición
+  //     this.editarHabilitado = true;
+  // }
 
   public editar(){
     if(this.archivos != null && this.archivos.length > 0){
