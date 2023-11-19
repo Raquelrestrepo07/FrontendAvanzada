@@ -10,19 +10,19 @@ import { PqrsService } from 'src/app/servicios/pqrs.service';
 })
 export class CrearPqrsComponent {
 
-  pqrsPacienteDto: PQRSPacienteDTO;
+  pqrsPacienteDTO: PQRSPacienteDTO;
 
 
   constructor(private pqrsService: PqrsService) {
-    this.pqrsPacienteDto = new PQRSPacienteDTO();
+    this.pqrsPacienteDTO = new PQRSPacienteDTO();
   }
 
   public crearPqrs(){
-    this.pqrsService.crear(this.pqrsPacienteDto);
+    this.pqrsService.crear(this.pqrsPacienteDTO);
   }
 
   public seleccionar(codigoCita:number){
-    this.pqrsPacienteDto.citaAsociada = codigoCita;
+    this.pqrsPacienteDTO.citaAsociada = codigoCita;
   }
 
 }

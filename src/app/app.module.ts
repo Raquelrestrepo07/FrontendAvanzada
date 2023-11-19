@@ -16,6 +16,7 @@ import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/c
 import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-medico.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { AlertaComponent } from './pagina/alerta/alerta.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { FormsModule } from '@angular/forms';
     PerfilPacienteComponent,
     DetalleCitaComponent,
     CitasPendienteMedicoComponent,
-    CitasHoyMedicoComponent
+    CitasHoyMedicoComponent,
+    AlertaComponent
     
   ],
   imports: [

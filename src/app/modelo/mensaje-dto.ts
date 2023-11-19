@@ -1,5 +1,5 @@
 export interface MensajeDTO {
 
     error: boolean ;
-    T: any; 
+    respuesta: any; 
 }
