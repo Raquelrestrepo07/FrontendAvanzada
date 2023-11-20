@@ -12,7 +12,7 @@ import { RegistroUsuarioDTO } from '../modelo/registro-usuario-dto';
 })
 export class PacienteService {
 
-  private usuarioURL = "http://localhost:8080/api/pacienteController";
+  private usuarioURL = "http://localhost:8080/api/pacientes";
   
   constructor(private http: HttpClient) { }
 

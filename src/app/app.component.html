@@ -8,25 +8,33 @@
   <i class="fa-solid fa-stethoscope fs-3"></i>
   <span class="fs-4 ms-3 me-3">{{title}}</span>
   </a>
-  <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-  <li><a routerLink="" class="nav-link px-2 text-white">Inicio</a></li>
-  <li><a routerLink="/gestion-pqrs" class="nav-link px-2 text-white">Gestión PQRS</a></li>
-  <li><a routerLink="/gestion-citas" class="nav-link px-2 text-white">Gestión Citas</a></li>
-  <li><a routerLink="/perfil-paciente" class="nav-link px-2 text-white">Mi perfil</a></li>
-  <li><a routerLink="/citas-pendiente-medico" class="nav-link px-2 text-white">Citas pendientes</a></li>
-  <li><a routerLink="/citas-hoy-medico" class="nav-link px-2 text-white">Mi día</a></li>
+  
+  <div *ngIf="!isLogged; then nologged else logged"></div>
 
-  </ul>
-  <div class="text-end">
-  <button type="button" routerLink="/login" class="btn btn-outline-light
-  
-  me-2">Iniciar Sesión</button>
-  
-  <button type="button" routerLink="/registro" class="btn
-  
-  btn-success">Registrarme</button>
+  <ng-template #nologged>
+      <div class="text-end">
+        <button type="button" routerLink="/login" class="btn btn-outline-light me-2">Iniciar Sesión</button>
+        <button type="button" routerLink="/registro" class="btn btn-warning">Registrarme</button>
+      </div>
+  </ng-template>
+
+  <ng-template #logged>
+    <div class="text-end">
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <li><a routerLink="" class="nav-link px-2 text-white">Inicio</a></li>
+      <li><a routerLink="/gestion-pqrs" class="nav-link px-2 text-white">Gestión PQRS</a></li>
+      <li><a routerLink="/gestion-citas" class="nav-link px-2 text-white">Gestión Citas</a></li>
+      <li><a routerLink="/perfil-paciente" class="nav-link px-2 text-white">Mi perfil</a></li>
+      <li><a routerLink="/citas-pendiente-medico" class="nav-link px-2 text-white">Citas pendientes</a></li>
+      <li><a routerLink="/citas-hoy-medico" class="nav-link px-2 text-white">Mi día</a></li>
+    </ul>
+
+      <label class="me-3" >Hola {{email}}</label>
+      <button type="button" (click)="logout()" class="btn btn-warning">Cerrar sesión</button>
+    </div>
+  </ng-template>
   </div>
-  </div>
+
   </div>
   </header>
   <div class="seccion-pagina p-4">

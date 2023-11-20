@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './pagina/inicio/inicio.component';
@@ -17,6 +17,7 @@ import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-med
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
+import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { AlertaComponent } from './pagina/alerta/alerta.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [  { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,10 +20,13 @@ export class LoginComponent {
     this.loginDTO = new LoginDTO();
   }
 
+
   public login(){
+    console.log(this.loginDTO);
     this.authService.login(this.loginDTO).subscribe({
       next: data => {
-      this.tokenService.login(data.respuesta.token);
+      this.tokenService.login(data.respuesta.Token);
+      //console.log(data.respuesta.Token);
     },
     error: error => {
     this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };

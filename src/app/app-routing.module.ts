@@ -12,21 +12,24 @@ import { DetalleCitaComponent } from './pagina/detalle-cita/detalle-cita.compone
 import { PerfilPacienteComponent } from './pagina/perfil-paciente/perfil-paciente.component';
 import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/citas-pendiente-medico.component';
 import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-medico.component';
+import { LoginGuard } from './guards/permiso.service';
+import { RolesGuard } from './guards/roles.service';
 
 export const routes: Routes = [
   { path: "", component: InicioComponent },
   { path: "login", component: LoginComponent },
   { path: "registro", component: RegistroComponent },
-  { path: "agendar-cita", component: AgendarCitaComponent },
-  { path: "gestion-pqrs", component: GestionPqrsComponent },
-  { path: "crear-pqrs", component: CrearPqrsComponent },
-  { path: "detalle-pqrs/:codigo", component: DetallePqrsComponent },
-  { path: "gestion-citas", component: GestionCitasComponent },
-  { path: "agendar-cita", component: AgendarCitaComponent },
-  { path: "detalle-cita/:codigo", component: DetalleCitaComponent },
-  { path: "perfil-paciente", component: PerfilPacienteComponent },
-  { path: "citas-pendiente-medico", component: CitasPendienteMedicoComponent },
-  { path: "citas-hoy-medico", component: CitasHoyMedicoComponent },
+  { path: "agendar-cita", component: AgendarCitaComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] }},
+  { path: "gestion-pqrs", component: GestionPqrsComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] }},
+  { path: "crear-pqrs", component: CrearPqrsComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] } },
+  { path: "detalle-pqrs/:codigo", component: DetallePqrsComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] }},
+  { path: "gestion-citas", component: GestionCitasComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] } },
+  { path: "detalle-cita/:codigo", component: DetalleCitaComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] }},
+  { path: "perfil-paciente", component: PerfilPacienteComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] } },
+  { path: "citas-pendiente-medico", component: CitasPendienteMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medicos"] } },
+  { path: "citas-hoy-medico", component: CitasHoyMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medicos"] } },
+  { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+  { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
   { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

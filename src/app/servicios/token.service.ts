@@ -17,6 +17,8 @@ export class TokenService {
     }
 
   public getToken(): string | null {
+    // console.log(TOKEN_KEY);
+    // console.log(sessionStorage);
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
@@ -27,20 +29,53 @@ export class TokenService {
     return false;
   }
 
-  public login(token:string){
-    this.setToken(token);
-    this.router.navigate(["/"]);
-  }
+  // public login(token:string){
+  //   this.setToken(token);
+  //   this.router.navigate(["/"]);
+  // }
+
+  // public logout() {
+  //   window.sessionStorage.clear();
+  //   this.router.navigate(["/login"]);
+  // }
 
   public logout() {
     window.sessionStorage.clear();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login"]).then(() => {
+    window.location.reload();
+    });
   }
 
+  public login(token: string) {
+    this.setToken(token);
+    //console.log(token);
+    this.router.navigate(["/"]).then(() => {
+    window.location.reload();
+    });
+  }
   private decodePayload(token: string): any {
     const payload = token!.split(".")[1];
     const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
     const values = JSON.parse(payloadDecoded);
     return values;
   }
+
+  public getEmail():string{
+    const token = this.getToken();
+    //console.log(token);
+    if(token){
+    const values = this.decodePayload(token);
+    return values.sub;
+    }
+    return "";
+    }
+
+    public getRole():string[]{
+      const token = this.getToken();
+      if(token){
+      const values = this.decodePayload(token);
+      return values.rol;
+      }
+      return [];
+      }
 }
