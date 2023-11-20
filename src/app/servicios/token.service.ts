@@ -8,6 +8,23 @@ const TOKEN_KEY = "AuthToken";
   providedIn: 'root'
 })
 export class TokenService {
+  public getCodigo(): number {
+    const token = this.getToken();
+    if (token) {
+    const values = this.decodePayload(token);
+    return values.id;
+    }
+    return 0;
+  }
+
+  public getContrasenia(): string {
+    const token = this.getToken();
+    if (token) {
+    const values = this.decodePayload(token);
+    return values.contrasenia;
+    }
+    return "";
+  }
 
   constructor(private router: Router) { }
 

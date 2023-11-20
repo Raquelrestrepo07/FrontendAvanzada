@@ -46,7 +46,7 @@ export class RegistroComponent {
     if (this.registroUsuarioDTO.urlFoto.length != 0){
       
         }else{
-        //this.alerta = { mensaje: "Debe subir una imagen", tipo: "danger" };
+        this.alerta = { mensaje: "Debe subir una imagen", tipo: "danger" };
         }
     }
 
@@ -97,22 +97,22 @@ export class RegistroComponent {
 
       public subirImagen() {
 
-        // if (this.archivos != null && this.archivos.length > 0) {
+        if (this.archivos != null && this.archivos.length > 0) {
 
-        // const formData = new FormData();
+        const formData = new FormData();
         
-        // formData.append('file', this.archivos[0]);
-        // this.imagenService.subir(formData).subscribe({
-        // next: data => {
-        // this.registroUsuarioDTO.urlFoto = data.respuesta.url;
-        // },
-        // error: error => {
-        // this.alerta = { mensaje: error.error, tipo: "danger" };
-        // }
-        // });
-        // } else {
-        // this.alerta = { mensaje: 'Debe seleccionar una imagen y subirla', tipo: "danger" };
-        // }
+        formData.append('file', this.archivos[0]);
+        this.imagenService.subir(formData).subscribe({
+        next: data => {
+        this.registroUsuarioDTO.urlFoto = data.respuesta.url;
+        },
+        error: error => {
+        this.alerta = { mensaje: error.error, tipo: "danger" };
+        }
+        });
+        } else {
+        this.alerta = { mensaje: 'Debe seleccionar una imagen y subirla', tipo: "danger" };
+        }
         }
 
 

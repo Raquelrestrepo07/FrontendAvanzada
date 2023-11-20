@@ -47,5 +47,8 @@ export class PacienteService {
     return this.http.get<MensajeDTO>(`${this.usuarioURL}/detalle/${codigoCita}`);
   }
 
+  public detallePaciente(codigo: number): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.usuarioURL}/detallePaciente/${codigo}`);
+  }
 
 }

@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegistroUsuarioDTO } from 'src/app/modelo/registro-usuario-dto';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { ClinicaService } from 'src/app/servicios/clinica.service';
+import { Alerta } from 'src/app/modelo/alerta';
+import { DetallePacienteDTO } from 'src/app/modelo/detalle-paciente-dto';
+import { PacienteService } from 'src/app/servicios/paciente.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-perfil-paciente',
@@ -9,16 +15,19 @@ import { RegistroUsuarioDTO } from 'src/app/modelo/registro-usuario-dto';
 })
 export class PerfilPacienteComponent {
 
-  registroUsuarioDTO: RegistroUsuarioDTO;
+  detallePacienteDTO: DetallePacienteDTO;
   ciudades:string[];
   eps:string[];
   tipoSangre:string[];
   archivos!:FileList;
+  alerta!: Alerta;
+  contrasenia!: number;
 
   //editarHabilitado: boolean = false;
 
-  constructor(){
-    this.registroUsuarioDTO = new RegistroUsuarioDTO();
+  constructor(private tokenService: TokenService,private pacienteService: PacienteService, private clinicaService: ClinicaService){
+    this.detallePacienteDTO = new DetallePacienteDTO();
+    this.detallePaciente();
     this.ciudades = [];
     this.cargarCiudades();
     this.eps = [];
@@ -27,39 +36,64 @@ export class PerfilPacienteComponent {
     this.cargarTipoSangre();
     }
 
-  // editarPerfil() {
-  //     // Lógica para manejar la edición
-  //     this.editarHabilitado = true;
-  // }
+    public detallePaciente(){
+      this.pacienteService.detallePaciente(this.tokenService.getCodigo()).subscribe({
+        next: data => {
+          this.detallePacienteDTO = data.respuesta;
+        this.alerta = { mensaje: data.respuesta, tipo: "success" };
+        },        
+        error: error => {
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+        }
+        });
 
-  public editar(){
-    if(this.archivos != null && this.archivos.length > 0){
-      console.log(this.registroUsuarioDTO);
-      }else{
-      console.log("Debe cargar una foto");
-      }
     }
 
+    public editarPerfil(){
+      this.pacienteService.editarPerfil(this.detallePacienteDTO).subscribe({
+        next: data => {
+        this.alerta = { mensaje: data.respuesta, tipo: "success" };
+        },        
+        error: error => {
+        this.alerta = { mensaje: error.error.respuesta, tipo: "danger" };
+        }
+        });
+      }
+
   private cargarCiudades(){
-    this.ciudades.push("Armenia");
-    this.ciudades.push("Calarcá");
-    this.ciudades.push("Pereira");
-    this.ciudades.push("Manizales");
-    this.ciudades.push("Medellín");
+    this.clinicaService.listarCiudades().subscribe({
+      next: data => {
+      this.ciudades = data.respuesta;
+      console.log(data.respuesta);
+      },
+      error: error => {
+      console.log(error);
+      }
+      });
     }
 
     private cargarEps(){
-      this.eps.push("Sanitas");
-      this.eps.push("Sura");
-      this.eps.push("Nueva eps");
-      this.eps.push("Salud total");
+      this.clinicaService.listarEPS().subscribe({
+        next: data => {
+        this.eps = data.respuesta;
+        console.log(data.respuesta);
+        },
+        error: error => {
+        console.log(error);
+        }
+        });
       }
 
     private cargarTipoSangre(){
-      this.tipoSangre.push("O+");
-      this.tipoSangre.push("A+");
-      this.tipoSangre.push("A-");
-      this.tipoSangre.push("AB-");
+      this.clinicaService.listarTipoSangre().subscribe({
+        next: data => {
+        this.tipoSangre = data.respuesta;
+        console.log(data.respuesta);
+        },
+        error: error => {
+        console.log(error);
+        }
+        });
       }
 
     public onFileChange(event:any){
@@ -69,5 +103,25 @@ export class PerfilPacienteComponent {
       this.archivos = event.target.files;
       }
     }
+
+    public subirImagen() {
+
+      // if (this.archivos != null && this.archivos.length > 0) {
+
+      // const formData = new FormData();
+      
+      // formData.append('file', this.archivos[0]);
+      // this.imagenService.subir(formData).subscribe({
+      // next: data => {
+      // this.registroUsuarioDTO.urlFoto = data.respuesta.url;
+      // },
+      // error: error => {
+      // this.alerta = { mensaje: error.error, tipo: "danger" };
+      // }
+      // });
+      // } else {
+      // this.alerta = { mensaje: 'Debe seleccionar una imagen y subirla', tipo: "danger" };
+      // }
+      }
 
 }
