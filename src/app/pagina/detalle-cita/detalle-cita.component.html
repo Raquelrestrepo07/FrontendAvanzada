@@ -1,1 +1,42 @@
-<p>{{cita | json}}</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <style>
+        .body {
+            display: flex;
+            justify-content: center;
+            height: 80vh;
+            margin: 0;
+        }
+
+        .center-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="center-container">
+        <h1>Detalle de tu cita</h1>
+        <h6>Dios te salve</h6>
+    </div>
+    <br>
+    <div class="body">
+            <h6>Medico: {{cita?.medico| json}}</h6>
+            
+            <p>Fecha: {{cita?.fechaCita| json}}</p>
+            <br>
+            <p>La cita se encuentra en estado: {{cita?.estado| json}}</p>
+            <br>
+            <p>La cita fue creada: {{cita?.fechaCreacion| json}}</p>
+
+    </div>
+
+    
+
+
+</body>
+</html>

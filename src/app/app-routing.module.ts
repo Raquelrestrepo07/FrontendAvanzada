@@ -12,6 +12,7 @@ import { DetalleCitaComponent } from './pagina/detalle-cita/detalle-cita.compone
 import { PerfilPacienteComponent } from './pagina/perfil-paciente/perfil-paciente.component';
 import { CitasPendienteMedicoComponent } from './pagina/citas-pendiente-medico/citas-pendiente-medico.component';
 import { CitasHoyMedicoComponent } from './pagina/citas-hoy-medico/citas-hoy-medico.component';
+import { MiDiaComponent } from './pagina/mi-dia/mi-dia.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -26,8 +27,9 @@ export const routes: Routes = [
   { path: "gestion-citas", component: GestionCitasComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] } },
   { path: "detalle-cita/:codigo", component: DetalleCitaComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] }},
   { path: "perfil-paciente", component: PerfilPacienteComponent, canActivate: [RolesGuard], data: {expectedRole: ["paciente"] } },
-  { path: "citas-pendiente-medico", component: CitasPendienteMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medicos"] } },
-  { path: "citas-hoy-medico", component: CitasHoyMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medicos"] } },
+  { path: "citas-pendiente-medico", component: CitasPendienteMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medico"] } },
+  { path: "citas-hoy-medico", component: CitasHoyMedicoComponent, canActivate: [RolesGuard], data: {expectedRole: ["medico"] } },
+  { path: "mi-dia", component: MiDiaComponent, canActivate: [RolesGuard], data: {expectedRole: ["medico"] } },
   { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
   { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
   { path: "**", pathMatch: "full", redirectTo: "" }

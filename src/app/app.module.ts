@@ -18,7 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
-
+import { MiDiaComponent } from './pagina/mi-dia/mi-dia.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +35,8 @@ import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
     DetalleCitaComponent,
     CitasPendienteMedicoComponent,
     CitasHoyMedicoComponent,
-    AlertaComponent
-    
+    MiDiaComponent,
+    AlertaComponent,    
   ],
   imports: [
     BrowserModule,

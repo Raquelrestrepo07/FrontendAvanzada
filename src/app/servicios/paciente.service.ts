@@ -6,11 +6,13 @@ import { DetallePacienteDTO } from '../modelo/detalle-paciente-dto';
 import { PQRSPacienteDTO } from '../modelo/pqrs-paciente-dto';
 import { AgendarCitaPacienteDTO } from '../modelo/agendar-cita-paciente-dto';
 import { RegistroUsuarioDTO } from '../modelo/registro-usuario-dto';
+import { Especialidad } from '../modelo/especialidad';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PacienteService {
+  
 
   private usuarioURL = "http://localhost:8080/api/pacientes";
   
@@ -49,6 +51,10 @@ export class PacienteService {
 
   public detallePaciente(codigo: number): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.usuarioURL}/detallePaciente/${codigo}`);
+  }
+
+  public obtenerMedicosEspecialidad(especialidad: Especialidad): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.usuarioURL}/obtenerMedicosEspecialidad/${especialidad}`);
   }
 
 }
